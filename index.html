@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQA GCSE Chemistry: Global Warming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        .zoom-in { animation: zoomIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .animate-spin-slow { animation: spin 3s linear infinite; }
+        .animate-spin-reverse-slow { animation: spinReverse 3s linear infinite; }
+        @keyframes spinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        .hide { display: none !important; }
+        .pulse-light { animation: pulseLight 2s infinite; }
+        @keyframes pulseLight { 0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); } }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-gray-900 pb-24">
+
+    <header class="bg-white shadow-sm border-b border-gray-200 p-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-extrabold text-blue-900">AQA GCSE Chemistry: Global Warming</h1>
+                <p class="text-sm text-gray-500 font-medium">Topic 4.9: Chemistry of the Atmosphere</p>
+            </div>
+            <div class="flex gap-2 bg-gray-100 p-1 rounded-lg overflow-x-auto w-full md:w-auto" id="tab-buttons">
+                <button onclick="switchTab(0)" class="tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors bg-white shadow text-blue-700">1. Diagram</button>
+                <button onclick="switchTab(1)" class="tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">2. Match-Up</button>
+                <button onclick="switchTab(2)" class="tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">3. Quiz</button>
+                <button onclick="switchTab(3)" class="tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">4. Exam Qs</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto mt-6">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 min-h-[600px] overflow-hidden">
+            
+            <div id="tab-0" class="tab-content block">
+                <div class="flex flex-col md:flex-row gap-6 p-4">
+                    <div class="flex-1 bg-white rounded-xl p-4 border border-gray-200 relative shadow-inner min-h-[600px] flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-900">The Greenhouse Effect Diagram</h3>
+                                <p class="text-sm text-gray-700">Drag the scrambled labels from the right into the correct boxes to explain the process.</p>
+                            </div>
+                            <div id="diagram-success" class="hide flex-col items-center fade-in zoom-in duration-500">
+                                <div class="w-12 h-12 bg-green-500 rounded-lg shadow-lg flex items-center justify-center animate-spin-slow mb-1">
+                                    <span class="text-2xl animate-spin-reverse-slow">🌟</span>
+                                </div>
+                                <span class="font-extrabold text-green-700 bg-green-100 px-3 py-1 rounded-full text-sm shadow-sm border border-green-300">4/4 Marks!</span>
+                            </div>
+                        </div>
+                        
+                        <div class="relative w-full max-w-[800px] h-[450px] mx-auto bg-slate-50 rounded-lg overflow-hidden border border-gray-300 shadow-sm flex-1">
+                            <!-- Sun -->
+                            <div class="absolute top-6 left-6 w-16 h-16 bg-yellow-400 rounded-full shadow-[0_0_30px_rgba(250,204,21,0.6)] flex items-center justify-center border-2 border-yellow-500 z-10">
+                                <span class="text-yellow-900 font-bold text-xs tracking-widest">SUN</span>
+                            </div>
+                            <!-- Atmosphere Oval -->
+                            <div class="absolute top-[10%] left-[5%] right-[5%] bottom-[15%] bg-sky-100/30 border-[3px] border-dashed border-sky-400 rounded-[100%] flex justify-center pt-4 z-0 shadow-[inset_0_10px_20px_rgba(186,230,253,0.2)] pointer-events-none">
+                                <span class="text-sky-800 font-bold tracking-wider text-base md:text-lg bg-white/80 px-4 py-1 rounded-full backdrop-blur-sm shadow-sm h-fit">Atmosphere (CO₂ and CH₄)</span>
+                            </div>
+                            <!-- Earth Surface Oval -->
+                            <div class="absolute -bottom-[20%] left-[-10%] right-[-10%] h-[40%] bg-emerald-500 rounded-[100%] border-t-[5px] border-emerald-600 shadow-[inset_0_10px_30px_rgba(0,100,0,0.2)] flex justify-center pt-6 z-0 pointer-events-none">
+                                <span class="text-emerald-900 font-extrabold tracking-widest text-2xl opacity-90 drop-shadow-sm">EARTH</span>
+                            </div>
+                            
+                            <!-- SVG Directional Arrows -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <defs>
+                                    <marker id="arrow-yellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#eab308" />
+                                    </marker>
+                                    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444" />
+                                    </marker>
+                                </defs>
+                                <path d="M 12 20 L 35 72" stroke="#eab308" stroke-width="1.5" fill="none" marker-end="url(#arrow-yellow)" vector-effect="non-scaling-stroke" />
+                                <path d="M 42 72 L 65 25" stroke="#ef4444" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)" vector-effect="non-scaling-stroke" />
+                            </svg>
+
+                            <div class="absolute inset-0 z-20 pointer-events-none">
+                                <!-- Z1 -->
+                                <div class="absolute top-[20%] left-[12%] pointer-events-auto">
+                                    <div id="Z1" class="drop-zone w-40 md:w-48 h-24 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z1')">
+                                        Drop incoming energy description here
+                                    </div>
+                                </div>
+                                <!-- Z2 -->
+                                <div class="absolute top-[75%] left-[28%] pointer-events-auto">
+                                    <div id="Z2" class="drop-zone w-40 md:w-48 h-20 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z2')">
+                                        Drop Earth surface action here
+                                    </div>
+                                </div>
+                                <!-- Z3 -->
+                                <div class="absolute top-[45%] left-[55%] pointer-events-auto">
+                                    <div id="Z3" class="drop-zone w-40 md:w-48 h-24 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z3')">
+                                        Drop reflected energy description here
+                                    </div>
+                                </div>
+                                <!-- Z4 -->
+                                <div class="absolute top-[12%] left-[70%] pointer-events-auto">
+                                    <div id="Z4" class="drop-zone w-40 md:w-48 h-24 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z4')">
+                                        Drop atmosphere effect description here
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-center">
+                            <button onclick="resetDiagram()" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded shadow font-bold text-sm transition-colors">Reset Diagram</button>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-72 bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-gray-700 mb-4 border-b pb-2">Available Labels</h4>
+                        <div id="labels-container" class="flex flex-col gap-3">
+                            <!-- Labels injected via JS -->
+                        </div>
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg text-xs text-yellow-800 border border-yellow-200 shadow-inner">
+                            <strong>Hint:</strong> Short-wavelength radiation comes from the hot Sun. Long-wavelength (infra-red) radiation is emitted by the cooler Earth.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-1" class="tab-content hide p-4 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold text-emerald-900 mb-2">Causes and Effects of Global Warming</h3>
+                <p class="text-emerald-700 mb-6">Match the human activity (cause) on the left with its environmental effect on the right. Click a cause, then click the correct effect to pair them.</p>
+                
+                <div class="flex flex-col md:flex-row justify-between gap-8">
+                    <div class="flex-1 space-y-4">
+                        <h4 class="font-bold text-gray-700 text-center bg-gray-100 p-2 rounded">Causes (Human Activity)</h4>
+                        <div id="causes-container" class="space-y-4"></div>
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <h4 class="font-bold text-gray-700 text-center bg-gray-100 p-2 rounded">Effects (Outcome)</h4>
+                        <div id="effects-container" class="space-y-4"></div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="resetMatches()" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg shadow font-medium">Reset Matches</button>
+                </div>
+            </div>
+
+            <div id="tab-2" class="tab-content hide p-4 max-w-3xl mx-auto space-y-6">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-purple-900">Knowledge Check (15 Marks)</h3>
+                        <p class="text-purple-700">Select the correct answer for each multiple-choice question.</p>
+                    </div>
+                    <div id="quiz-progress" class="bg-purple-100 text-purple-800 font-bold px-4 py-2 rounded-full shadow-sm">
+                        Question 1 of 15
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 transition-all min-h-[300px] flex flex-col justify-center">
+                    <p id="quiz-question-text" class="font-bold text-xl text-gray-800 mb-6"></p>
+                    <div id="quiz-options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button onclick="prevQuiz()" id="btn-prev" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 text-gray-800 rounded-lg shadow font-bold transition-colors">&larr; Previous</button>
+                    <div id="quiz-dots" class="flex gap-2 items-center flex-wrap justify-center px-4"></div>
+                    <button onclick="nextQuiz()" id="btn-next" class="px-6 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 text-white rounded-lg shadow font-bold transition-colors">Next &rarr;</button>
+                </div>
+            </div>
+
+            <div id="tab-3" class="tab-content hide p-4 max-w-4xl mx-auto">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-indigo-900">Extended Response Questions (6 Marks total)</h3>
+                    <p class="text-indigo-700 mb-2">Write your answers below. Click the mark button to self-assess your answers against AQA marking points.</p>
+                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-3 text-sm text-indigo-900">
+                        <strong>Examiner Tip:</strong> Use correct scientific keywords (e.g., short/long wavelength, infra-red). Do not use vague terms like "pollution".
+                    </div>
+                </div>
+
+                <!-- Q1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Q1. Explain in terms of radiation how the greenhouse effect warms the Earth. (3 marks)</h4>
+                    <textarea id="q1-input" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none text-gray-800" placeholder="Type your answer here..." oninput="checkTextarea('q1')"></textarea>
+                    
+                    <div id="q1-action" class="mt-3 flex justify-end">
+                        <button id="q1-btn" onclick="markQ1()" disabled class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white rounded-lg shadow font-bold transition-colors">Mark Answer 1</button>
+                    </div>
+                    
+                    <div id="q1-feedback" class="hide mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 fade-in"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-6">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Q2. Describe how two human activities increase greenhouse gases, and state two effects of global climate change. (3 marks)</h4>
+                    <textarea id="q2-input" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none text-gray-800" placeholder="Type your answer here..." oninput="checkTextarea('q2')"></textarea>
+                    
+                    <div id="q2-action" class="mt-3 flex justify-end">
+                        <button id="q2-btn" onclick="markQ2()" disabled class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white rounded-lg shadow font-bold transition-colors">Mark Answer 2</button>
+                    </div>
+
+                    <div id="q2-feedback" class="hide mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 fade-in"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-700 p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.2)] z-40">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="text-slate-300 text-sm flex items-center gap-4">
+                <span class="hidden md:inline">Complete all tasks to generate your final assessment report.</span>
+                <div class="bg-slate-800 px-3 py-1.5 rounded-md border border-slate-600 text-cyan-400 font-mono text-xs flex flex-col justify-center items-center">
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+            <button onclick="showReport()" class="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-xl font-bold text-lg shadow-[0_0_15px_rgba(59,130,246,0.5)] transform transition active:scale-95 flex items-center justify-center gap-2">
+                📸 Screenshot / Print Score Report
+            </button>
+        </div>
+    </div>
+
+    <div id="report-modal" class="hide fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative fade-in zoom-in">
+            <button onclick="hideReport()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 font-bold">✕</button>
+            
+            <div class="text-center border-b border-gray-200 pb-6 mb-6">
+                <h2 class="text-3xl font-extrabold text-slate-800">Assessment Report</h2>
+                <div class="flex justify-center items-center gap-2 mt-2 text-slate-500 bg-slate-100 py-1 px-4 rounded-full inline-block font-mono text-sm">
+                    <span id="report-date">📅 </span>
+                    <span id="report-time">⏱️ </span>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-8">
+                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span class="font-medium text-gray-600">1. Diagram Mapping</span>
+                    <span id="score-1" class="font-bold text-gray-800">0 / 4</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span class="font-medium text-gray-600">2. Causes & Effects</span>
+                    <span id="score-2" class="font-bold text-gray-800">0 / 6</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span class="font-medium text-gray-600">3. Knowledge Quiz</span>
+                    <span id="score-3" class="font-bold text-gray-800">0 / 15</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span class="font-medium text-gray-600">4. Extended Response</span>
+                    <span id="score-4" class="font-bold text-gray-800">0 / 6</span>
+                </div>
+                
+                <div class="flex justify-between items-center py-4 bg-slate-50 rounded-lg px-4 mt-4 border border-slate-200">
+                    <span class="font-bold text-xl text-slate-700">Total Score</span>
+                    <div id="score-total-container" class="font-extrabold text-2xl text-blue-600">
+                        <span id="score-total">0</span> <span class="text-base text-slate-400">/ 31</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+                <h4 class="font-bold text-indigo-900 mb-1">Examiner's Advice:</h4>
+                <p id="score-advice" class="text-sm text-indigo-800 leading-relaxed"></p>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button onclick="window.print()" class="px-6 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-sm font-bold shadow transition-colors">Print to PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA & CONSTANTS ---
+        const DRAG_LABELS = [
+            { id: 'L4', text: 'Greenhouse gases absorb long-wavelength (infra-red) radiation, trapping heat.' },
+            { id: 'L2', text: 'The Earth absorbs short-wavelength radiation and warms up.' },
+            { id: 'L1', text: 'Short-wavelength (UV/visible) radiation from the Sun passes through the atmosphere.' },
+            { id: 'L3', text: 'The Earth cools by re-emitting long-wavelength (infra-red) radiation.' }
+        ];
+
+        const MATCH_CAUSES = [
+            { id: 'C1', text: 'Rubbish tips / Landfill' },
+            { id: 'C2', text: 'Cattle farming' },
+            { id: 'C3', text: 'Burning fossil fuels' },
+            { id: 'C4', text: 'Deforestation' },
+            { id: 'C5', text: 'Rising average global temperatures' },
+            { id: 'C6', text: 'Changing regional climates' }
+        ];
+
+        const MATCH_EFFECTS = [
+            { id: 'E3', text: 'Releases large amounts of locked-up carbon dioxide, thickening the greenhouse layer.' },
+            { id: 'E5', text: 'Disrupts global weather patterns, leading to extreme weather like severe droughts and floods.' },
+            { id: 'E1', text: 'Releases methane gas as organic waste decays without oxygen, trapping heat.' },
+            { id: 'E4', text: 'Reduces photosynthesis, leaving more CO2 in the atmosphere.' },
+            { id: 'E6', text: 'Causes changes to wildlife distribution as animals migrate away from original plant sources to find suitable conditions.' },
+            { id: 'E2', text: 'Releases methane gas during digestion, a highly potent greenhouse gas.' }
+        ];
+
+        const CORRECT_MATCHES = { 'C1': 'E1', 'C2': 'E2', 'C3': 'E3', 'C4': 'E4', 'C5': 'E5', 'C6': 'E6' };
+
+        const QUIZ_QUESTIONS = [
+            { q: "Which of the following is a greenhouse gas?", options: ["Oxygen", "Nitrogen", "Methane", "Argon"], a: 2 },
+            { q: "What percentage of the modern atmosphere is Nitrogen?", options: ["21%", "78%", "0.04%", "1%"], a: 1 },
+            { q: "Which type of radiation is emitted by the Sun?", options: ["Long-wavelength", "Short-wavelength", "Microwave", "Radio"], a: 1 },
+            { q: "Which type of radiation is emitted by the Earth?", options: ["Long-wavelength (Infra-red)", "Short-wavelength", "Ultraviolet", "Gamma"], a: 0 },
+            { q: "What was the main gas in Earth's early atmosphere?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Methane"], a: 1 },
+            { q: "How do greenhouse gases warm the Earth?", options: ["They absorb short-wavelength radiation", "They reflect light from the sun", "They absorb long-wavelength radiation", "They produce heat chemically"], a: 2 },
+            { q: "What is a 'carbon footprint'?", options: ["Total greenhouse gases emitted over a full life cycle", "The amount of coal mined in a year", "A physical mark left by soot", "The amount of carbon in living things"], a: 0 },
+            { q: "Which of these is a direct consequence of rising global temperatures?", options: ["More oxygen in the air", "Rising sea levels", "Increased volcanic activity", "Colder winters globally"], a: 1 },
+            { q: "Why does deforestation contribute to global warming?", options: ["It produces methane", "It reduces the amount of CO2 removed by photosynthesis", "Trees release heat", "It increases atmospheric nitrogen"], a: 1 },
+            { q: "Which human activity is a major source of atmospheric methane?", options: ["Driving petrol cars", "Cattle farming", "Planting trees", "Using solar panels"], a: 1 },
+            { q: "Which organisms evolved to decrease early atmospheric carbon dioxide?", options: ["Algae and plants", "Dinosaurs", "Fungi", "Mammals"], a: 0 },
+            { q: "How did oceans reduce carbon dioxide in the early atmosphere?", options: ["It boiled away", "It dissolved to form sedimentary rocks", "It turned into oxygen", "It froze into glaciers"], a: 1 },
+            { q: "What is a major cause of global dimming?", options: ["Carbon dioxide", "Methane", "Particulates (carbon soot)", "Sulfur dioxide"], a: 2 },
+            { q: "Which gas is a major cause of acid rain?", options: ["Carbon monoxide", "Sulfur dioxide", "Nitrogen", "Methane"], a: 1 },
+            { q: "What is peer review in the context of climate science?", options: ["Friends checking homework", "Scientists evaluating each other's work to ensure validity", "Government approving data", "Publishing raw data on social media"], a: 1 }
+        ];
+
+        // STATE VARIABLES
+        let diagramZones = { Z1: null, Z2: null, Z3: null, Z4: null };
+        let draggedItemText = null;
+        let draggedItemId = null;
+        
+        let selectedCauseId = null;
+        let matchesMade = {};
+        
+        let currentQuizIndex = 0;
+        let quizAnswers = new Array(15).fill(null);
+        
+        let q1Result = null;
+        let q2Result = null;
+
+        // UI TAB SWITCHING
+        function switchTab(index) {
+            document.querySelectorAll('.tab-content').forEach((el, i) => {
+                el.classList.toggle('hide', i !== index);
+                el.classList.toggle('block', i === index);
+            });
+            document.querySelectorAll('.tab-btn').forEach((el, i) => {
+                if (i === index) {
+                    el.className = "tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors bg-white shadow text-blue-700";
+                } else {
+                    el.className = "tab-btn px-4 py-2 rounded-md text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200";
+                }
+            });
+        }
+
+        function renderDiagram() {
+            const container = document.getElementById('labels-container');
+            container.innerHTML = '';
+            
+            const usedIds = Object.values(diagramZones).map(z => z ? z.id : null);
+            let anyAvailable = false;
+
+            DRAG_LABELS.forEach(label => {
+                if (!usedIds.includes(label.id)) {
+                    anyAvailable = true;
+                    const div = document.createElement('div');
+                    div.draggable = true;
+                    div.className = "bg-white border-2 border-blue-400 text-blue-900 p-3 rounded shadow-md text-sm font-medium cursor-grab active:cursor-grabbing hover:bg-blue-50 hover:scale-105 transition-all";
+                    div.innerText = label.text;
+                    div.ondragstart = (e) => {
+                        draggedItemId = label.id;
+                        draggedItemText = label.text;
+                    };
+                    container.appendChild(div);
+                }
+            });
+
+            if (!anyAvailable) {
+                container.innerHTML = '<p class="text-green-600 text-sm font-semibold italic text-center p-4">All labels placed!</p>';
+            }
+
+            // Update Zones UI
+            ['Z1', 'Z2', 'Z3', 'Z4'].forEach(zoneId => {
+                const zDiv = document.getElementById(zoneId);
+                if (diagramZones[zoneId]) {
+                    const colors = { Z1: 'yellow', Z2: 'green', Z3: 'red', Z4: 'blue' };
+                    const col = colors[zoneId];
+                    zDiv.className = `drop-zone w-40 md:w-48 h-20 md:h-24 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-${col}-50 border-${col}-500 text-${col}-900`;
+                    zDiv.innerText = diagramZones[zoneId].text;
+                } else {
+                    const placeholders = { Z1: 'Drop incoming energy description here', Z2: 'Drop Earth surface action here', Z3: 'Drop reflected energy description here', Z4: 'Drop atmosphere effect description here' };
+                    zDiv.className = `drop-zone w-40 md:w-48 h-20 md:h-24 border-2 rounded-lg p-2 text-xs flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500`;
+                    zDiv.innerText = placeholders[zoneId];
+                }
+            });
+
+            // Check Success
+            const successDiv = document.getElementById('diagram-success');
+            if (diagramZones.Z1?.id === 'L1' && diagramZones.Z2?.id === 'L2' && diagramZones.Z3?.id === 'L3' && diagramZones.Z4?.id === 'L4') {
+                successDiv.classList.remove('hide');
+                successDiv.classList.add('flex');
+            } else {
+                successDiv.classList.add('hide');
+                successDiv.classList.remove('flex');
+            }
+        }
+
+        function allowDrop(e) { e.preventDefault(); }
+
+        function handleDrop(e, zoneId) {
+            e.preventDefault();
+            if (draggedItemId) {
+                // Remove from old zone if moving between zones
+                for (let key in diagramZones) {
+                    if (diagramZones[key]?.id === draggedItemId) diagramZones[key] = null;
+                }
+                diagramZones[zoneId] = { id: draggedItemId, text: draggedItemText };
+                draggedItemId = null;
+                draggedItemText = null;
+                renderDiagram();
+            }
+        }
+
+        function resetDiagram() {
+            diagramZones = { Z1: null, Z2: null, Z3: null, Z4: null };
+            renderDiagram();
+        }
+
+        function renderMatchUp() {
+            const causesDiv = document.getElementById('causes-container');
+            const effectsDiv = document.getElementById('effects-container');
+            causesDiv.innerHTML = '';
+            effectsDiv.innerHTML = '';
+
+            MATCH_CAUSES.forEach(cause => {
+                const isMatched = Object.keys(matchesMade).includes(cause.id);
+                const isSelected = selectedCauseId === cause.id;
+                const btn = document.createElement('button');
+                btn.className = `w-full p-4 rounded-xl border-2 text-left transition-all duration-200 font-medium ${isMatched ? 'bg-gray-100 border-gray-300 text-gray-400 opacity-60 cursor-not-allowed' : isSelected ? 'bg-emerald-100 border-emerald-500 shadow-md transform scale-105' : 'bg-white border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50 shadow-sm text-gray-800'}`;
+                btn.innerHTML = `${cause.text} ${isMatched ? '<span class="float-right text-emerald-500 font-bold">✓ Matched</span>' : ''}`;
+                btn.disabled = isMatched;
+                btn.onclick = () => {
+                    if(!isMatched) {
+                        selectedCauseId = (selectedCauseId === cause.id) ? null : cause.id;
+                        renderMatchUp();
+                    }
+                };
+                causesDiv.appendChild(btn);
+            });
+
+            MATCH_EFFECTS.forEach(effect => {
+                const isMatched = Object.values(matchesMade).includes(effect.id);
+                const btn = document.createElement('button');
+                btn.className = `w-full p-4 rounded-xl border-2 text-left transition-all duration-200 text-sm ${isMatched ? 'bg-gray-100 border-gray-300 text-gray-400 opacity-60 cursor-not-allowed' : selectedCauseId ? 'bg-white border-blue-300 hover:border-blue-500 hover:bg-blue-50 shadow-md cursor-pointer pulse-light' : 'bg-white border-gray-200 text-gray-800 cursor-not-allowed'}`;
+                btn.innerText = effect.text;
+                btn.disabled = isMatched || !selectedCauseId;
+                btn.onclick = () => {
+                    if(!isMatched && selectedCauseId) {
+                        matchesMade[selectedCauseId] = effect.id;
+                        selectedCauseId = null;
+                        renderMatchUp();
+                    }
+                };
+                effectsDiv.appendChild(btn);
+            });
+        }
+
+        function resetMatches() {
+            matchesMade = {};
+            selectedCauseId = null;
+            renderMatchUp();
+        }
+
+        function renderQuiz() {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            document.getElementById('quiz-progress').innerText = `Question ${currentQuizIndex + 1} of ${QUIZ_QUESTIONS.length}`;
+            document.getElementById('quiz-question-text').innerText = `${currentQuizIndex + 1}. ${q.q}`;
+            
+            const optsContainer = document.getElementById('quiz-options-container');
+            optsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const isSelected = quizAnswers[currentQuizIndex] === idx;
+                const label = document.createElement('label');
+                label.className = `flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${isSelected ? 'bg-purple-100 border-purple-500 shadow-md transform scale-[1.02]' : 'bg-gray-50 border-gray-200 hover:bg-purple-50 hover:border-purple-300'}`;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'quiz-option';
+                radio.className = 'mr-4 w-5 h-5 text-purple-600 focus:ring-purple-500';
+                radio.checked = isSelected;
+                radio.onchange = () => {
+                    quizAnswers[currentQuizIndex] = idx;
+                    renderQuiz();
+                };
+                
+                const span = document.createElement('span');
+                span.className = 'text-base font-medium text-gray-700';
+                span.innerText = opt;
+
+                label.appendChild(radio);
+                label.appendChild(span);
+                optsContainer.appendChild(label);
+            });
+
+            // Dots
+            const dots = document.getElementById('quiz-dots');
+            dots.innerHTML = '';
+            quizAnswers.forEach((ans, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full ${idx === currentQuizIndex ? 'bg-purple-600' : ans !== null ? 'bg-purple-300' : 'bg-gray-300'}`;
+                dots.appendChild(dot);
+            });
+
+            document.getElementById('btn-prev').disabled = currentQuizIndex === 0;
+            document.getElementById('btn-next').disabled = currentQuizIndex === QUIZ_QUESTIONS.length - 1;
+        }
+
+        function nextQuiz() { if(currentQuizIndex < QUIZ_QUESTIONS.length - 1) { currentQuizIndex++; renderQuiz(); } }
+        function prevQuiz() { if(currentQuizIndex > 0) { currentQuizIndex--; renderQuiz(); } }
+
+        const evaluateQ1 = (text) => {
+            let marks = 0;
+            const t = text.toLowerCase();
+            const feedback = [];
+            
+            if (t.includes('short')) { marks++; feedback.push("✅ Correctly mentioned short-wavelength radiation from the Sun."); }
+            else { feedback.push("❌ Missing reference to short-wavelength radiation passing through the atmosphere."); }
+
+            if (t.includes('long') || t.includes('infra-red') || t.includes('infrared') || t.includes('ir')) { marks++; feedback.push("✅ Correctly mentioned long-wavelength / infra-red radiation."); }
+            else { feedback.push("❌ Missing reference to the Earth emitting long-wavelength (infra-red) radiation."); }
+
+            if (t.includes('absorb') || t.includes('trap')) { marks++; feedback.push("✅ Correctly identified that greenhouse gases absorb this radiation."); }
+            else { feedback.push("❌ Missing explanation that greenhouse gases absorb the long-wavelength radiation."); }
+
+            return { marks, feedback, lowModel: "The sun sends heat to the earth. The earth sends it back but greenhouse gases trap the heat like a blanket. (0-1 marks - lacks scientific keywords)", perfectModel: "Short-wavelength radiation from the Sun passes through the Earth's atmosphere. The Earth absorbs this radiation and re-emits long-wavelength (infra-red) radiation. Greenhouse gases in the atmosphere absorb this long-wavelength infra-red radiation, which traps heat and causes the Earth's temperature to rise. (3 marks)" };
+        };
+
+        const evaluateQ2 = (text) => {
+            let marks = 0;
+            const t = text.toLowerCase();
+            const feedback = [];
+
+            const hasActivity = t.includes('fossil fuel') || t.includes('deforestation') || t.includes('cattle') || t.includes('landfill');
+            if (hasActivity) { marks++; feedback.push("✅ Identified a human activity (e.g., burning fossil fuels, cattle farming)."); }
+            else { feedback.push("❌ Missing a specific human activity."); }
+
+            const hasGas = t.includes('carbon dioxide') || t.includes('co2') || t.includes('methane') || t.includes('ch4');
+            if (hasGas) { marks++; feedback.push("✅ Identified the greenhouse gas released (CO2 or Methane)."); }
+            else { feedback.push("❌ Missing the specific greenhouse gas released by the activity."); }
+
+            const hasEffect = t.includes('sea level') || t.includes('ice') || t.includes('weather') || t.includes('flood') || t.includes('storm') || t.includes('drought') || t.includes('habitat') || t.includes('migrat');
+            if (hasEffect) { marks++; feedback.push("✅ Identified a consequence of climate change."); }
+            else { feedback.push("❌ Missing an effect of global climate change."); }
+
+            return { marks, feedback, lowModel: "Humans make pollution. This causes global warming which makes the ice melt and animals lose their homes. (1 mark - too vague, 'pollution' is not specific)", perfectModel: "Burning fossil fuels releases carbon dioxide (CO2), and cattle farming releases methane (CH4). Effects of this include the melting of polar ice caps causing sea levels to rise, and changes to habitats forcing animals to migrate. (3 marks)" };
+        };
+
+        function checkTextarea(q) {
+            const val = document.getElementById(`${q}-input`).value;
+            document.getElementById(`${q}-btn`).disabled = val.length < 10;
+        }
+
+        function markQ1() {
+            const val = document.getElementById('q1-input').value;
+            q1Result = evaluateQ1(val);
+            renderFeedback('q1', q1Result);
+        }
+
+        function markQ2() {
+            const val = document.getElementById('q2-input').value;
+            q2Result = evaluateQ2(val);
+            renderFeedback('q2', q2Result);
+        }
+
+        function renderFeedback(q, result) {
+            document.getElementById(`${q}-input`).disabled = true;
+            document.getElementById(`${q}-action`).classList.add('hide');
+            
+            const fbDiv = document.getElementById(`${q}-feedback`);
+            fbDiv.classList.remove('hide');
+            
+            let html = `
+                <div class="flex justify-between items-center mb-3">
+                    <h5 class="font-bold text-indigo-700">Self-Marking Feedback</h5>
+                    <span class="px-4 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-sm border border-indigo-300">Marks Awarded: ${result.marks} / 3</span>
+                </div>
+                <ul class="space-y-1 mb-4 text-sm bg-white p-3 rounded border border-gray-100 shadow-sm">
+                    ${result.feedback.map(fb => `<li class="${fb.startsWith('✅') ? 'text-green-700' : 'text-red-600'} font-medium">${fb}</li>`).join('')}
+                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-gray-300">
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                        <span class="text-xs uppercase font-bold text-red-800 tracking-wider flex items-center">⚠️ Low-Level Answer</span>
+                        <p class="text-sm text-red-900 mt-1 italic leading-relaxed">"${result.lowModel}"</p>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-lg border border-green-100">
+                        <span class="text-xs uppercase font-bold text-green-800 tracking-wider flex items-center">⭐ Perfect Model Answer</span>
+                        <p class="text-sm text-green-900 mt-1 italic leading-relaxed">"${result.perfectModel}"</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <button onclick="retryQ('${q}')" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded shadow font-medium">Retry Question</button>
+                </div>
+            `;
+            fbDiv.innerHTML = html;
+        }
+
+        function retryQ(q) {
+            if(q === 'q1') q1Result = null;
+            if(q === 'q2') q2Result = null;
+            document.getElementById(`${q}-input`).disabled = false;
+            document.getElementById(`${q}-input`).value = '';
+            document.getElementById(`${q}-btn`).disabled = true;
+            document.getElementById(`${q}-action`).classList.remove('hide');
+            document.getElementById(`${q}-feedback`).classList.add('hide');
+        }
+
+        function getScores() {
+            let s1 = 0;
+            if (diagramZones.Z1?.id === 'L1') s1++;
+            if (diagramZones.Z2?.id === 'L2') s1++;
+            if (diagramZones.Z3?.id === 'L3') s1++;
+            if (diagramZones.Z4?.id === 'L4') s1++;
+
+            let s2 = 0;
+            for (const [cause, effect] of Object.entries(matchesMade)) {
+                if (CORRECT_MATCHES[cause] === effect) s2++;
+            }
+
+            let s3 = quizAnswers.reduce((score, ans, idx) => score + (ans === QUIZ_QUESTIONS[idx].a ? 1 : 0), 0);
+            
+            let s4 = (q1Result?.marks || 0) + (q2Result?.marks || 0);
+
+            return { s1, s2, s3, s4, total: s1 + s2 + s3 + s4 };
+        }
+
+        function getAdvice(score) {
+            const percentage = (score / 31) * 100;
+            if (percentage < 40) return "Review the basic definitions of the greenhouse effect. Focus on learning the difference between short and long-wavelength radiation. Remember that 'pollution' is too vague for AQA exams - always name the specific gas!";
+            if (percentage < 70) return "Good effort! To improve, practice the 3-mark extended writing questions. Ensure you always link the specific human activity to the exact gas released, and then to its environmental effect.";
+            return "Excellent work! Your understanding of atmospheric chemistry is very strong. Keep practicing applying these concepts to new scenarios and ensuring you always use specific scientific terminology.";
+        }
+
+        function showReport() {
+            const scores = getScores();
+            document.getElementById('score-1').innerText = `${scores.s1} / 4`;
+            document.getElementById('score-2').innerText = `${scores.s2} / 6`;
+            document.getElementById('score-3').innerText = `${scores.s3} / 15`;
+            document.getElementById('score-4').innerText = `${scores.s4} / 6`;
+            
+            const totEl = document.getElementById('score-total');
+            totEl.innerText = scores.total;
+            document.getElementById('score-total-container').className = `font-extrabold text-2xl ${scores.total >= 22 ? 'text-green-600' : 'text-blue-600'}`;
+            
+            document.getElementById('score-advice').innerText = getAdvice(scores.total);
+
+            const now = new Date();
+            document.getElementById('report-date').innerText = `📅 ${now.toLocaleDateString()}`;
+            document.getElementById('report-time').innerText = `⏱️ ${now.toLocaleTimeString()}`;
+
+            document.getElementById('report-modal').classList.remove('hide');
+        }
+
+        function hideReport() {
+            document.getElementById('report-modal').classList.add('hide');
+        }
+
+        // INIT CLOCK & FIRST RENDER
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('current-date').innerText = now.toLocaleDateString();
+            document.getElementById('current-time').innerText = now.toLocaleTimeString();
+        }, 1000);
+
+        renderDiagram();
+        renderMatchUp();
+        renderQuiz();
+
+    </script>
+</body>
+</html>
