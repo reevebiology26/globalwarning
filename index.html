@@ -48,93 +48,112 @@
         </div>
         
         <div class="bg-gray-100 border-t border-gray-200 px-3 py-2 flex justify-center gap-1 md:gap-2 overflow-x-auto">
-            <button onclick="switchTab(0)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors bg-white shadow text-blue-700">1. Diagram</button>
-            <button onclick="switchTab(1)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">2. Match-Up</button>
-            <button onclick="switchTab(2)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">3. Quiz</button>
-            <button onclick="switchTab(3)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">4. Exam Qs</button>
+            <button onclick="switchTab(0)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors bg-white shadow text-blue-700">0. Home</button>
+            <button onclick="switchTab(1)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">1. Diagram</button>
+            <button onclick="switchTab(2)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">2. Match-Up</button>
+            <button onclick="switchTab(3)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">3. Quiz</button>
+            <button onclick="switchTab(4)" class="tab-btn px-3 py-1.5 rounded-md text-xs md:text-sm font-bold whitespace-nowrap transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-200">4. Exam Qs</button>
         </div>
     </header>
 
     <main class="flex-1 w-full max-w-7xl mx-auto mt-2 mb-2 px-2 md:px-4 overflow-hidden flex flex-col">
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 flex-1 overflow-hidden flex flex-col min-h-0">
             
+            <!-- TAB 0: HOME -->
+            <div id="tab-home" class="tab-content flex-1 overflow-y-auto flex flex-col justify-center items-center p-6 text-center">
+                <div class="max-w-md w-full bg-slate-50 p-8 rounded-2xl border border-slate-200 shadow-sm fade-in zoom-in">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h2 class="text-2xl font-extrabold text-blue-900 mb-2">Welcome to Revision</h2>
+                    <p class="text-slate-600 mb-6 text-sm">Topic: The Chemistry of the Atmosphere (Global Warming).</p>
+                    
+                    <div class="mb-6 text-left">
+                        <label class="block text-sm font-bold text-slate-700 mb-2" for="student-name">Enter your full name:</label>
+                        <input type="text" id="student-name" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-800 text-lg font-medium" placeholder="e.g. Jane Doe" onkeypress="if(event.key === 'Enter') startApp()">
+                    </div>
+                    
+                    <button onclick="startApp()" class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold text-lg shadow-md transform transition active:scale-95 flex items-center justify-center gap-2">
+                        Start Learning 🚀
+                    </button>
+                </div>
+            </div>
+
             <!-- TAB 1: DIAGRAM -->
-            <div id="tab-0" class="tab-content flex-1 overflow-y-auto flex flex-col">
+            <div id="tab-0" class="tab-content hide flex-1 overflow-y-auto flex flex-col">
                 <div class="flex flex-col md:flex-row gap-4 p-4 flex-1 min-h-0">
                     <div class="flex-1 bg-white rounded-xl p-3 border border-gray-200 relative shadow-inner flex flex-col min-h-[350px]">
                         <div class="flex justify-between items-start mb-2 shrink-0">
                             <div>
                                 <h3 class="text-lg font-bold text-blue-900">The Greenhouse Effect Diagram</h3>
                                 <p class="text-xs text-gray-700">Drag the scrambled labels into the correct boxes.</p>
+                                <div id="diagram-message" class="hide mt-1 text-xs md:text-sm font-bold px-2 py-1 rounded inline-block fade-in"></div>
                             </div>
                             <div id="diagram-success" class="hide flex-col items-center fade-in zoom-in duration-500">
                                 <div class="w-8 h-8 md:w-10 md:h-10 bg-green-500 rounded-lg shadow flex items-center justify-center animate-spin-slow mb-1">
                                     <span class="text-lg md:text-xl animate-spin-reverse-slow">🌟</span>
                                 </div>
-                                <span class="font-extrabold text-green-700 bg-green-100 px-2 py-0.5 rounded-full text-xs shadow-sm border border-green-300">4/4 Marks!</span>
+                                <span id="diagram-score-display" class="font-extrabold text-green-700 bg-green-100 px-2 py-0.5 rounded-full text-xs shadow-sm border border-green-300">4/4 Marks!</span>
                             </div>
                         </div>
                         
-                        <div class="relative w-full max-w-[700px] flex-1 mx-auto bg-slate-50 rounded-lg overflow-hidden border border-gray-300 shadow-sm min-h-[280px]">
+                        <!-- Simplified Diagram -->
+                        <div class="relative w-full max-w-[700px] flex-1 mx-auto bg-slate-50 rounded-lg overflow-hidden border border-gray-300 shadow-sm min-h-[380px]">
                             <!-- Sun -->
-                            <div class="absolute top-[4%] left-[10%] w-12 h-12 bg-yellow-400 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.6)] flex items-center justify-center border-2 border-yellow-500 z-10">
+                            <div class="absolute top-[4%] left-[5%] w-14 h-14 bg-yellow-400 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.6)] flex items-center justify-center border-2 border-yellow-500 z-10">
                                 <span class="text-yellow-900 font-bold text-[10px] tracking-widest">SUN</span>
                             </div>
                             
                             <!-- Atmosphere Dome (Surrounding Earth) -->
-                            <div class="absolute bottom-0 left-[-5%] right-[-5%] h-[85%] bg-sky-100/30 border-t-[4px] border-dashed border-sky-400 rounded-t-[100%] z-0 pointer-events-none shadow-[inset_0_15px_30px_rgba(186,230,253,0.3)]"></div>
+                            <div class="absolute bottom-0 left-[0%] w-[100%] h-[75%] border-t-[5px] border-dashed border-sky-400 bg-sky-100/30 rounded-t-[50%] z-0 pointer-events-none"></div>
                             
                             <!-- Atmosphere Text -->
-                            <div class="absolute top-[6%] left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-                                <span class="text-sky-800 font-bold tracking-wider text-xs md:text-sm bg-white/90 px-3 py-1 rounded-full shadow-sm whitespace-nowrap">Humans increasing CO₂ and CH₄</span>
+                            <div class="absolute top-[18%] left-1/2 -translate-x-1/2 z-10 pointer-events-none text-center">
+                                <span class="text-sky-800 font-extrabold tracking-wider text-xs md:text-sm bg-white/95 px-3 py-1 rounded-full shadow-sm border border-sky-200">Increasing CO₂ and CH₄</span>
                             </div>
                             
                             <!-- Earth Surface Dome -->
-                            <div class="absolute bottom-0 left-[-10%] right-[-10%] h-[35%] bg-emerald-500 rounded-t-[100%] border-t-[4px] border-emerald-600 shadow-[inset_0_10px_30px_rgba(0,100,0,0.3)] flex justify-center pt-2 z-0 pointer-events-none">
-                                <span class="text-emerald-900 font-extrabold tracking-widest text-lg opacity-90 drop-shadow-sm">EARTH</span>
+                            <div class="absolute bottom-0 left-[5%] w-[90%] h-[35%] bg-emerald-500 rounded-t-[50%] border-t-[4px] border-emerald-600 shadow-[inset_0_10px_30px_rgba(0,100,0,0.3)] flex justify-center pt-4 z-0 pointer-events-none">
+                                <span class="text-emerald-900 font-extrabold tracking-widest text-xl opacity-90 drop-shadow-sm">EARTH</span>
                             </div>
                             
-                            <!-- SVG Directional Arrows -->
+                            <!-- Thicker Arrows -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
                                 <defs>
-                                    <marker id="arrow-yellow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                    <marker id="arrow-yellow-thick" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
                                         <path d="M 0 1 L 10 5 L 0 9 z" fill="#eab308" />
                                     </marker>
-                                    <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                    <marker id="arrow-red-thick" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
                                         <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444" />
                                     </marker>
                                 </defs>
-                                <!-- Thicker paths placed centrally to avoid drop-zones -->
-                                <path d="M 25 15 L 40 60" stroke="#eab308" stroke-width="4" fill="none" marker-end="url(#arrow-yellow)" vector-effect="non-scaling-stroke" />
-                                <path d="M 60 60 L 75 20" stroke="#ef4444" stroke-width="4" fill="none" marker-end="url(#arrow-red)" vector-effect="non-scaling-stroke" />
+                                <!-- Sun to Earth -->
+                                <path d="M 12 18 L 30 70" stroke="#eab308" stroke-width="5" fill="none" marker-end="url(#arrow-yellow-thick)" vector-effect="non-scaling-stroke" stroke-linecap="round" />
+                                <!-- Earth to space -->
+                                <path d="M 70 70 L 85 20" stroke="#ef4444" stroke-width="5" fill="none" marker-end="url(#arrow-red-thick)" vector-effect="non-scaling-stroke" stroke-linecap="round" />
                             </svg>
 
-                            <!-- Drop Zones using strict positioning to edges to prevent overlap -->
+                            <!-- Spaced Drop Zones -->
                             <div class="absolute inset-0 z-20 pointer-events-none">
-                                <!-- Z1 (Incoming: Left, middle height) -->
-                                <div class="absolute top-[25%] left-[2%] md:left-[5%] pointer-events-auto">
-                                    <div id="Z1" class="drop-zone w-28 md:w-36 h-20 md:h-24 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z1')">
-                                    </div>
+                                <!-- Z1 (Incoming: Left, outside atmos) -->
+                                <div class="absolute top-[25%] left-[5%] md:left-[8%] pointer-events-auto">
+                                    <div id="Z1" class="drop-zone w-28 md:w-36 h-20 md:h-24 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z1')"></div>
                                 </div>
-                                <!-- Z2 (Earth absorbs: Bottom left) -->
-                                <div class="absolute bottom-[2%] left-[5%] md:left-[15%] pointer-events-auto">
-                                    <div id="Z2" class="drop-zone w-28 md:w-36 h-16 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z2')">
-                                    </div>
+                                <!-- Z2 (Earth absorbs: Bottom Left) -->
+                                <div class="absolute bottom-[8%] left-[20%] pointer-events-auto">
+                                    <div id="Z2" class="drop-zone w-28 md:w-36 h-16 md:h-20 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z2')"></div>
                                 </div>
-                                <!-- Z3 (Earth emits: Bottom right) -->
-                                <div class="absolute bottom-[2%] right-[5%] md:right-[15%] pointer-events-auto">
-                                    <div id="Z3" class="drop-zone w-28 md:w-36 h-16 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z3')">
-                                    </div>
+                                <!-- Z3 (Earth emits: Bottom Right) -->
+                                <div class="absolute bottom-[8%] right-[20%] pointer-events-auto">
+                                    <div id="Z3" class="drop-zone w-28 md:w-36 h-16 md:h-20 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z3')"></div>
                                 </div>
-                                <!-- Z4 (Atmosphere traps: Top right) -->
-                                <div class="absolute top-[20%] right-[2%] md:right-[5%] pointer-events-auto">
-                                    <div id="Z4" class="drop-zone w-28 md:w-36 h-20 md:h-24 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z4')">
-                                    </div>
+                                <!-- Z4 (Atmosphere traps: Top Right) -->
+                                <div class="absolute top-[25%] right-[5%] md:right-[8%] pointer-events-auto">
+                                    <div id="Z4" class="drop-zone w-28 md:w-36 h-20 md:h-24 border-2 rounded-lg p-1.5 text-[9px] md:text-[11px] leading-tight flex items-center justify-center text-center transition-colors shadow-sm font-medium bg-white/95 border-dashed border-gray-400 text-gray-500" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Z4')"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2 shrink-0 flex justify-center">
-                            <button onclick="resetDiagram()" class="px-4 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded shadow font-bold text-xs transition-colors">Reset Diagram</button>
+                        <div class="mt-3 shrink-0 flex justify-center gap-4">
+                            <button onclick="markDiagram()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-md font-extrabold text-sm transition-colors active:scale-95">Mark Diagram</button>
+                            <button onclick="resetDiagram()" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg shadow font-bold text-sm transition-colors">Reset</button>
                         </div>
                     </div>
 
@@ -238,6 +257,7 @@
             
             <div class="text-center border-b border-gray-200 pb-4 mb-4">
                 <h2 class="text-2xl font-extrabold text-slate-800">Assessment Report</h2>
+                <h3 id="report-name-display" class="text-lg font-bold text-indigo-700 mt-1 hide"></h3>
                 <div class="flex justify-center items-center gap-2 mt-2 text-slate-500 bg-slate-100 py-1 px-3 rounded-full inline-block font-mono text-xs">
                     <span id="report-date">📅 </span>
                     <span id="report-time">⏱️ </span>
@@ -332,20 +352,33 @@
         ];
 
         // STATE VARIABLES
+        let studentName = "";
+        
         let diagramZones = { Z1: null, Z2: null, Z3: null, Z4: null };
         let draggedItemText = null;
         let draggedItemId = null;
+        let diagramLocked = false;
+        let initialDiagramScore = 0;
+        const CORRECT_ZONES = { Z1: 'L1', Z2: 'L2', Z3: 'L3', Z4: 'L4' };
         
         let selectedCauseId = null;
         let matchesMade = {};
         
         let currentQuizIndex = 0;
         let quizAnswers = new Array(15).fill(null);
+        let quizLocked = false;
+        let initialQuizScore = 0;
         
         let q1Result = null;
         let q2Result = null;
 
         // UI TAB SWITCHING
+        function startApp() {
+            const nameInput = document.getElementById('student-name')?.value?.trim();
+            studentName = nameInput || "Guest Student";
+            switchTab(1); // Go to Diagram
+        }
+
         function switchTab(index) {
             document.querySelectorAll('.tab-content').forEach((el, i) => {
                 el.classList.toggle('hide', i !== index);
@@ -392,7 +425,7 @@
                 const zDiv = document.getElementById(zoneId);
                 
                 // Heights vary depending on the zone mapping slightly to fit texts nicely
-                const heightClass = (zoneId === 'Z2' || zoneId === 'Z3') ? 'h-16' : 'h-20 md:h-24';
+                const heightClass = (zoneId === 'Z2' || zoneId === 'Z3') ? 'h-16 md:h-20' : 'h-20 md:h-24';
 
                 if (diagramZones[zoneId]) {
                     const colors = { Z1: 'yellow', Z2: 'green', Z3: 'red', Z4: 'blue' };
@@ -408,7 +441,12 @@
 
             // Check Success
             const successDiv = document.getElementById('diagram-success');
-            if (diagramZones.Z1?.id === 'L1' && diagramZones.Z2?.id === 'L2' && diagramZones.Z3?.id === 'L3' && diagramZones.Z4?.id === 'L4') {
+            let currentScore = 0;
+            for(let z in diagramZones) {
+                if(diagramZones[z]?.id === CORRECT_ZONES[z]) currentScore++;
+            }
+            
+            if (currentScore === 4 && diagramLocked) {
                 successDiv.classList.remove('hide');
                 successDiv.classList.add('flex');
             } else {
@@ -429,6 +467,112 @@
                 draggedItemId = null;
                 draggedItemText = null;
                 renderDiagram();
+            }
+        }
+
+        function markDiagram() {
+            let allFilled = true;
+            let currentScore = 0;
+            
+            for(let z in diagramZones) {
+                if(!diagramZones[z]) allFilled = false;
+                if(diagramZones[z]?.id === CORRECT_ZONES[z]) currentScore++;
+            }
+            
+            const msgDiv = document.getElementById('diagram-message');
+            
+            if(!allFilled) {
+                msgDiv.innerHTML = '⚠️ Please place all 4 labels before marking!';
+                msgDiv.classList.remove('hide', 'bg-red-50', 'text-red-600', 'border-red-200');
+                msgDiv.classList.add('bg-yellow-50', 'text-yellow-700', 'border-yellow-200', 'border');
+                setTimeout(() => msgDiv.classList.add('hide'), 3000);
+                return;
+            }
+
+            if(!diagramLocked) {
+                initialDiagramScore = currentScore;
+                diagramLocked = true;
+            }
+
+            if(currentScore === 4) {
+                document.getElementById('diagram-score-display').innerText = `Locked Score: ${initialDiagramScore}/4`;
+                renderDiagram();
+            } else {
+                // Determine wrong ones
+                const incorrectZones = [];
+                for(let z in diagramZones) {
+                    if(diagramZones[z]?.id !== CORRECT_ZONES[z]) {
+                        incorrectZones.push(z);
+                    }
+                }
+
+                // Show try again message
+                msgDiv.innerHTML = 'Incorrect labels are finding their correct spots...';
+                msgDiv.classList.remove('hide', 'bg-yellow-50', 'text-yellow-700', 'border-yellow-200');
+                msgDiv.classList.add('bg-red-50', 'text-red-600', 'border-red-200', 'border');
+
+                incorrectZones.forEach(zId => {
+                    const labelObj = diagramZones[zId];
+                    // Find target zone
+                    let targetZoneId = null;
+                    for(let kz in CORRECT_ZONES) {
+                        if(CORRECT_ZONES[kz] === labelObj.id) { targetZoneId = kz; break; }
+                    }
+
+                    const elStart = document.getElementById(zId);
+                    const elTarget = document.getElementById(targetZoneId);
+
+                    const rectStart = elStart.getBoundingClientRect();
+                    const rectTarget = elTarget.getBoundingClientRect();
+
+                    const ghost = document.createElement('div');
+                    // Style match
+                    ghost.className = elStart.className;
+                    ghost.style.position = 'fixed';
+                    ghost.style.left = rectStart.left + 'px';
+                    ghost.style.top = rectStart.top + 'px';
+                    ghost.style.width = rectStart.width + 'px';
+                    ghost.style.height = rectStart.height + 'px';
+                    ghost.style.zIndex = 1000;
+                    ghost.style.transition = 'all 1.2s ease-in-out';
+                    ghost.innerHTML = elStart.innerHTML;
+                    
+                    // Highlight red initially
+                    const baseColor = elStart.className.match(/bg-[a-z]+-50/)?.[0] || 'bg-white/95';
+                    ghost.classList.replace(baseColor, 'bg-red-100');
+                    ghost.classList.add('border-red-500', 'text-red-900', 'shadow-xl', 'border-4');
+
+                    document.body.appendChild(ghost);
+
+                    // Hide original
+                    elStart.classList.add('opacity-0');
+
+                    // Animate to correct location and spin
+                    setTimeout(() => {
+                        ghost.style.left = rectTarget.left + 'px';
+                        ghost.style.top = rectTarget.top + 'px';
+                        ghost.style.transform = 'rotate(360deg)';
+                        ghost.classList.replace('bg-red-100', 'bg-green-100');
+                        ghost.classList.replace('border-red-500', 'border-green-500');
+                        ghost.classList.replace('text-red-900', 'text-green-900');
+                    }, 50);
+
+                    // Clean up and reset
+                    setTimeout(() => {
+                        ghost.remove();
+                        elStart.classList.remove('opacity-0');
+                    }, 2200);
+                });
+
+                // Reset state after animation
+                setTimeout(() => {
+                    incorrectZones.forEach(zId => {
+                        diagramZones[zId] = null;
+                    });
+                    renderDiagram();
+                    msgDiv.innerHTML = 'Sentences returned to the side. Try again!';
+                    setTimeout(() => msgDiv.classList.add('hide'), 3000);
+                }, 2200);
             }
         }
 
@@ -525,9 +669,18 @@
             
             if (hasAnsweredAll) {
                 const currentScore = quizAnswers.reduce((score, ans, idx) => score + (ans === QUIZ_QUESTIONS[idx].a ? 1 : 0), 0);
+                
+                if (!quizLocked) {
+                    initialQuizScore = currentScore;
+                    quizLocked = true;
+                }
+
                 headerHTML += `
-                    <div class="bg-green-100 text-green-800 font-extrabold px-3 py-1 rounded shadow-sm border border-green-400 text-sm">
-                        Complete! Score: ${currentScore} / 15
+                    <div class="flex items-center gap-2">
+                        <div class="bg-green-100 text-green-800 font-extrabold px-3 py-1 rounded shadow-sm border border-green-400 text-sm">
+                            Score: ${initialQuizScore} / 15 (Locked)
+                        </div>
+                        ${currentScore < 15 ? `<button onclick="retryIncorrectQuiz()" class="px-3 py-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 rounded shadow text-xs font-bold transition-colors active:scale-95">Retry Incorrect</button>` : `<span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">100% Correct!</span>`}
                     </div>
                 `;
             } else {
@@ -624,6 +777,17 @@
 
         function nextQuiz() { if(currentQuizIndex < QUIZ_QUESTIONS.length - 1) { currentQuizIndex++; renderQuiz(); } }
         function prevQuiz() { if(currentQuizIndex > 0) { currentQuizIndex--; renderQuiz(); } }
+
+        function retryIncorrectQuiz() {
+            quizAnswers.forEach((ans, idx) => {
+                if (ans !== QUIZ_QUESTIONS[idx].a) {
+                    quizAnswers[idx] = null; // Clear incorrect answers
+                }
+            });
+            currentQuizIndex = quizAnswers.indexOf(null); // Go to first empty question
+            if (currentQuizIndex === -1) currentQuizIndex = 0;
+            renderQuiz();
+        }
 
         // TAB 4: EXTENDED RESPONSE LOGIC
         const evaluateQ1 = (text) => {
@@ -728,18 +892,14 @@
 
         // SCORING AND REPORT LOGIC
         function getScores() {
-            let s1 = 0;
-            if (diagramZones.Z1?.id === 'L1') s1++;
-            if (diagramZones.Z2?.id === 'L2') s1++;
-            if (diagramZones.Z3?.id === 'L3') s1++;
-            if (diagramZones.Z4?.id === 'L4') s1++;
+            let s1 = diagramLocked ? initialDiagramScore : 0;
 
             let s2 = 0;
             for (const [cause, effect] of Object.entries(matchesMade)) {
                 if (CORRECT_MATCHES[cause] === effect) s2++;
             }
 
-            let s3 = quizAnswers.reduce((score, ans, idx) => score + (ans === QUIZ_QUESTIONS[idx].a ? 1 : 0), 0);
+            let s3 = quizLocked ? initialQuizScore : 0;
             
             let s4 = (q1Result?.marks || 0) + (q2Result?.marks || 0);
 
@@ -765,6 +925,14 @@
             document.getElementById('score-total-container').className = `font-extrabold text-xl ${scores.total >= 22 ? 'text-green-600' : 'text-blue-600'}`;
             
             document.getElementById('score-advice').innerText = getAdvice(scores.total);
+
+            const nameEl = document.getElementById('report-name-display');
+            if (studentName) {
+                nameEl.innerText = `Student: ${studentName}`;
+                nameEl.classList.remove('hide');
+            } else {
+                nameEl.classList.add('hide');
+            }
 
             const now = new Date();
             document.getElementById('report-date').innerText = `📅 ${now.toLocaleDateString()}`;
